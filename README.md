@@ -1,5 +1,5 @@
 
-# TPZ-CORE Crafting
+# TPZ-CORE DEATH LOGS
 
 ## Requirements
 
