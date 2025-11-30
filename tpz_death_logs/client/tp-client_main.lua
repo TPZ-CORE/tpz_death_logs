@@ -1,3 +1,5 @@
+local IS_PLAYER_LOADED = false 
+
 local WeaponNames = {
 	[tostring(GetHashKey('WEAPON_UNARMED'))] = 'Unarmed',
 	[tostring(GetHashKey('WEAPON_MELEE_KNIFE'))] = 'KNIFE',
@@ -65,6 +67,20 @@ local WeaponNames = {
 	[tostring(GetHashKey('WEAPON_BOW'))] = 'BOW'
 }
 
+-----------------------------------------------------------
+--[[ Base Events  ]]--
+-----------------------------------------------------------
+
+-- @param newChar : returns integer value (0 = false, 1 = true)
+RegisterNetEvent("tpz_core:isPlayerReady")
+AddEventHandler("tpz_core:isPlayerReady", function(newChar)
+    IS_PLAYER_LOADED = true
+end)
+
+-----------------------------------------------------------
+--[[ Events  ]]--
+-----------------------------------------------------------
+
 local TRIGGERED = false
 
 RegisterNetEvent("tpz_core:isPlayerRespawned")
@@ -77,6 +93,9 @@ AddEventHandler("tpz_core:resurrectPlayer", function()
     TRIGGERED = false
 end)
 
+-----------------------------------------------------------
+--[[ Threads  ]]--
+-----------------------------------------------------------
 
 Citizen.CreateThread(function()
     
@@ -85,7 +104,7 @@ Citizen.CreateThread(function()
         local sleep  = 2000
         local player = PlayerPedId()
         
-        if not IsEntityDead(player) or TRIGGERED then
+        if not IsEntityDead(player) or TRIGGERED or not IS_PLAYER_LOADED then
             goto END
         end
         
