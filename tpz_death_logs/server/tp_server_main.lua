@@ -18,14 +18,18 @@ AddEventHandler("tpz_death_logs:server:trigger", function(deathReason, deathCaus
   local fullname       = xPlayer.getFirstName() .. ' ' .. xPlayer.getLastName()
   local steamName      = GetPlayerName(_source)
 
-  if killedByPlayer ~= nil then 
+  if killedByPlayer ~= nil and GetPlayerName(tonumber(killedByPlayer)) ~= nil then 
 
-    local tPlayer    = TPZ.GetPlayer(tonumber(killedByPlayer))
-    local tfullname  = tPlayer.getFirstName() .. ' ' .. tPlayer.getLastName()
-    killedByPlayer   = tfullname .. '( Steam Name: ' .. GetPlayerName(tonumber(killedByPlayer)) .. ', Online Id: ' .. killedByPlayer .. ' )'
+    local tPlayer = TPZ.GetPlayer(tonumber(killedByPlayer))
+
+    if tPlayer.loaded() then 
+      local tfullname  = tPlayer.getFirstName() .. ' ' .. tPlayer.getLastName()
+      killedByPlayer   = tfullname .. '( Steam Name: ' .. GetPlayerName(tonumber(killedByPlayer)) .. ', Online Id: ' .. killedByPlayer .. ' )'
+    end
+
   end
 
-  local webhook        = 'webhookhere' -- WEBHOOK URL HERE
+  local webhook        = 'https://discord.com/api/webhooks/1443341878543122664/TS6rkZzk3lKAB1_ArOXAxqe28LqWgbjPNcdk5wE_-MIrUtR6hMzsjpR5ekatJrRtsAss'
   local description    = string.format('Death Reason: %s\nDeath Cause Hash: %s\nKilled By: %s\nKilled By Weapon: %s', deathReason, deathCauseHash, killedByPlayer, killedByWeapon)
   TPZ.SendToDiscordWithPlayerParameters(webhook, "", _source, steamName, fullname, identifier, charIdentifier, description, 10038562)
 end)
