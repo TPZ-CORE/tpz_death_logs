@@ -7,6 +7,9 @@ local TPZ = exports.tpz_core:getCoreAPI()
 RegisterServerEvent("tpz_death_logs:server:trigger")
 AddEventHandler("tpz_death_logs:server:trigger", function(deathReason, deathCauseHash, killedByPlayer, killedByWeapon)
   local _source = source
+
+  if _source == nil then return end
+
   local xPlayer = TPZ.GetPlayer(_source)
 
   if not xPlayer.loaded() then 
