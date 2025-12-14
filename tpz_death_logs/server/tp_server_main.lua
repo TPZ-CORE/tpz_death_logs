@@ -20,15 +20,11 @@ AddEventHandler("tpz_death_logs:server:trigger", function(deathReason, deathCaus
 
   if killedByPlayer ~= nil then 
     
-    if GetPlayerName(tonumber(killedByPlayer)) ~= nil then 
+    local tPlayer = TPZ.GetPlayer(killedByPlayer)
 
-      local tPlayer = TPZ.GetPlayer(tonumber(killedByPlayer))
-
-      if tPlayer.loaded() then 
-        local tfullname  = tPlayer.getFirstName() .. ' ' .. tPlayer.getLastName()
-        killedByPlayer   = tfullname .. '( Steam Name: ' .. GetPlayerName(tonumber(killedByPlayer)) .. ', Online Id: ' .. killedByPlayer .. ' )'
-      end
-
+    if tPlayer.loaded() then 
+      local tfullname  = tPlayer.getFirstName() .. ' ' .. tPlayer.getLastName()
+      killedByPlayer   = tfullname .. '( Steam Name: ' .. GetPlayerName(killedByPlayer) .. ', Online Id: ' .. killedByPlayer .. ' )'
     end
 
   end
