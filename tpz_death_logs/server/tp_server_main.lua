@@ -28,8 +28,8 @@ AddEventHandler("tpz_death_logs:server:trigger", function(deathReason, deathCaus
     end
 
   end
-
-  local webhook        = 'webhookhere'
+  local webhook        = TPZ.GetWebhookUrl('tpz_death_logs', 'ALL')
   local description    = string.format('Death Reason: %s\nDeath Cause Hash: %s\nKilled By: %s\nKilled By Weapon: %s', deathReason, deathCauseHash, killedByPlayer, killedByWeapon)
   TPZ.SendToDiscordWithPlayerParameters(webhook, "", _source, steamName, fullname, identifier, charIdentifier, description, 10038562)
 end)
+
