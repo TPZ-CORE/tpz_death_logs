@@ -156,7 +156,7 @@ Citizen.CreateThread(function()
 
                      if Config.tpz_medics then
 	                    isPoisoned = exports.tpz_medics:IsPlayerPoisoned()
-	                    end
+	                   end
 
                     -- if thrist or hunger was at 0%
                     if thirst <= 0 then
