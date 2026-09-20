@@ -149,7 +149,7 @@ Citizen.CreateThread(function()
 
 	                    thirst = exports.tpz_metabolism:getThirst()
 	                    hunger = exports.tpz_metabolism:getHunger()
-                    end
+                   end
 
 
                     local isPoisoned = false
