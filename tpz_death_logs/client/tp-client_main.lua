@@ -141,9 +141,16 @@ Citizen.CreateThread(function()
                 if IsEntityUnderwater(player) == 1 or IsEntityInWater(player) == 1 then
                     deathReason = "DROWN"
                 else
-                    local thirst = exports.tpz_metabolism:getThirst()
-                    local hunger = exports.tpz_metabolism:getHunger()
+
+                    local thirst = 100
+                    local hunger = 100
                     
+                    if Config.tpz_metabolism then
+
+	                    thirst = exports.tpz_metabolism:getThirst()
+	                    hunger = exports.tpz_metabolism:getHunger()
+                    end
+
                     local isPoisoned = exports.tpz_medics:IsPlayerPoisoned()
                     
                     -- if thrist or hunger was at 0%
