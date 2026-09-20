@@ -173,7 +173,15 @@ Citizen.CreateThread(function()
                 end
             end
             
-            TriggerServerEvent("tpz_death_logs:server:trigger", deathReason, deathHash, GetPlayerServerId(killedByPlayer), killedByWeapon )
+           if killedByPlayer then
+	           killedByPlayer = GetPlayerServerId(killedByPlayer)
+           else
+
+	            killedByPlayer = "N/A"
+           end
+
+
+            TriggerServerEvent("tpz_death_logs:server:trigger", deathReason, deathHash, killedByPlayer, killedByWeapon )
 
             TRIGGERED = true
         end
