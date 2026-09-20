@@ -151,8 +151,13 @@ Citizen.CreateThread(function()
 	                    hunger = exports.tpz_metabolism:getHunger()
                     end
 
-                    local isPoisoned = exports.tpz_medics:IsPlayerPoisoned()
-                    
+
+                    local isPoisoned = false
+
+                     if Config.tpz_medics then
+	                    isPoisoned = exports.tpz_medics:IsPlayerPoisoned()
+	                    end
+
                     -- if thrist or hunger was at 0%
                     if thirst <= 0 then
                         deathReason = "THIRST"
